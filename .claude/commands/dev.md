@@ -1,0 +1,1 @@
+Start the Next.js development server. If it's already running, let the user know. Run `npm run dev` and confirm the app is available at http://localhost:3000.

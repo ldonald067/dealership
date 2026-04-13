@@ -1,0 +1,1 @@
+Seed the database with sample data by running `npx prisma db seed`. This populates dealerships, vehicles, demo users, and time slots. After seeding, report what was created (counts of each entity). If the seed fails, read `prisma/seed.ts` to diagnose the issue.

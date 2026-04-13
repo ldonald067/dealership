@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm --version)",
+      "Bash(where node:*)",
+      "WebFetch(domain:alexop.dev)",
+      "WebFetch(domain:dave.com)",
+      "WebFetch(domain:sudowrite.com)",
+      "WebFetch(domain:discord.com)",
+      "Bash(export PATH=\"$PATH:/c/Program Files/nodejs\")",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --use-npm)",
+      "Bash(npm install:*)",
+      "Bash(npx prisma:*)",
+      "Bash(npx next:*)",
+      "Bash(ls \"C:/Users/nonoa/OneDrive/Desktop/dealership-main/src/generated/prisma/index\"*)",
+      "Bash(npm run:*)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(npx kill-port:*)",
+      "Bash(netstat -ano)",
+      "Bash(where npm.cmd)",
+      "Bash(node -e ':*)",
+      "Bash(npx shadcn@latest init -d)",
+      "Bash(npx shadcn@latest add card input label dialog table select badge calendar tabs separator dropdown-menu avatar toast sheet -y)",
+      "Bash(npx shadcn@latest add card input label dialog table select badge calendar tabs separator dropdown-menu avatar sonner sheet -y)",
+      "Bash(node -e \"const p = require\\('./package.json'\\); console.log\\('sonner:', p.dependencies?.sonner, 'base-ui:', p.dependencies?.['@base-ui/react'], 'lucide:', p.dependencies?.['lucide-react']\\)\")",
+      "WebFetch(domain:pose-hut-58194366.figma.site)"
+    ]
+  }
+}
