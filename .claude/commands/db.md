@@ -1,0 +1,1 @@
+Open Prisma Studio to visually inspect and edit the database. Run `npx prisma studio` in the background. Confirm it's available at http://localhost:5555.

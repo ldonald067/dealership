@@ -1,0 +1,154 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+// ──────────────── USERS & AUTH ────────────────
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  firstName    String
+  lastName     String
+  phone        String?
+  role         String   @default("CUSTOMER")
+  dealershipId String?
+  dealership   Dealership? @relation(fields: [dealershipId], references: [id])
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  documents      Document[]
+  creditApps     CreditApplication[]
+  appointments   Appointment[]
+  statusUpdates  StatusUpdate[]
+}
+
+// ──────────────── DEALERSHIPS ────────────────
+
+model Dealership {
+  id        String   @id @default(cuid())
+  name      String
+  address   String
+  city      String
+  state     String
+  zip       String
+  phone     String
+  email     String
+  logoUrl   String?
+  createdAt DateTime @default(now())
+
+  staff        User[]
+  vehicles     Vehicle[]
+  appointments Appointment[]
+  timeSlots    TimeSlot[]
+}
+
+// ──────────────── VEHICLES / INVENTORY ────────────────
+
+model Vehicle {
+  id            String   @id @default(cuid())
+  dealershipId  String
+  dealership    Dealership @relation(fields: [dealershipId], references: [id])
+  year          Int
+  make          String
+  model         String
+  trim          String?
+  vin           String   @unique
+  msrp          Float
+  salePrice     Float?
+  residualPct   Float?
+  moneyFactor   Float?
+  exteriorColor String?
+  interiorColor String?
+  mileage       Int      @default(0)
+  bodyType      String?
+  fuelType      String?
+  imageUrls     String?
+  status        String   @default("AVAILABLE")
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  appointments Appointment[]
+}
+
+// ──────────────── DOCUMENTS ────────────────
+
+model Document {
+  id         String   @id @default(cuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id])
+  type       String
+  fileName   String
+  filePath   String
+  fileSize   Int
+  mimeType   String
+  status     String   @default("PENDING")
+  reviewNote String?
+  uploadedAt DateTime @default(now())
+  reviewedAt DateTime?
+}
+
+// ──────────────── CREDIT APPLICATION ────────────────
+
+model CreditApplication {
+  id              String   @id @default(cuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id])
+  annualIncome    Float
+  employerName    String
+  employmentYears Int
+  housingStatus   String
+  monthlyHousing  Float
+  ssnLastFour     String
+  dateOfBirth     DateTime
+  status          String   @default("SUBMITTED")
+  reviewNote      String?
+  submittedAt     DateTime @default(now())
+  reviewedAt      DateTime?
+}
+
+// ──────────────── APPOINTMENTS ────────────────
+
+model Appointment {
+  id           String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id])
+  dealershipId String
+  dealership   Dealership @relation(fields: [dealershipId], references: [id])
+  vehicleId    String?
+  vehicle      Vehicle? @relation(fields: [vehicleId], references: [id])
+  dateTime     DateTime
+  purpose      String   @default("TEST_DRIVE_AND_SIGN")
+  status       String   @default("PENDING")
+  notes        String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+// ──────────────── TIME SLOTS ────────────────
+
+model TimeSlot {
+  id           String     @id @default(cuid())
+  dealershipId String
+  dealership   Dealership @relation(fields: [dealershipId], references: [id])
+  dayOfWeek    Int
+  startTime    String
+  endTime      String
+  maxBookings  Int        @default(2)
+}
+
+// ──────────────── STATUS TRACKER ────────────────
+
+model StatusUpdate {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  stage     String
+  message   String?
+  createdAt DateTime @default(now())
+}
