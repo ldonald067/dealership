@@ -2,6 +2,14 @@ import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
+/* eslint-disable @next/next/no-img-element */
+
+const stepIllustrations: Record<string, { default: string; active: string }> = {
+  "/vehicles": { default: "/illustrations/car1.png", active: "/illustrations/car2.png" },
+  "/documents": { default: "/illustrations/folder1.png", active: "/illustrations/folder2.png" },
+  "/credit": { default: "/illustrations/bank1.png", active: "/illustrations/bank2.png" },
+  "/appointments": { default: "/illustrations/calendar1.png", active: "/illustrations/calendar2.png" },
+};
 
 export default async function CustomerDashboard() {
   const session = await auth();
@@ -19,10 +27,9 @@ export default async function CustomerDashboard() {
 
   // Determine which step is "next"
   type StepStatus = "done" | "active" | "locked";
-  const steps: { href: string; icon: string; title: string; description: string; status: StepStatus; color: string }[] = [
+  const steps: { href: string; title: string; description: string; status: StepStatus; color: string }[] = [
     {
       href: "/vehicles",
-      icon: "🏎️",
       title: "Browse Vehicles",
       description: "Find your perfect ride and calculate your lease payment",
       status: "done", // Always accessible
@@ -30,7 +37,6 @@ export default async function CustomerDashboard() {
     },
     {
       href: "/documents",
-      icon: "🗂️",
       title: "Upload Documents",
       description: docCount > 0
         ? `${approvedDocs} of ${docCount} approved`
@@ -40,7 +46,6 @@ export default async function CustomerDashboard() {
     },
     {
       href: "/credit",
-      icon: "🪙",
       title: "Credit Application",
       description: creditApp
         ? creditApp.status === "APPROVED" ? "You're pre-approved!" : `Status: ${creditApp.status.replace("_", " ").toLowerCase()}`
@@ -50,7 +55,6 @@ export default async function CustomerDashboard() {
     },
     {
       href: "/appointments",
-      icon: "🗓️",
       title: "Book Appointment",
       description: appointment
         ? `${appointment.status === "CONFIRMED" ? "Confirmed" : "Pending"} — ${new Date(appointment.dateTime).toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" })}`
@@ -87,9 +91,13 @@ export default async function CustomerDashboard() {
             <div className="bg-white rounded-2xl p-6 border-2 border-orange-200 shadow-sm hover:shadow-lg transition-all hover:-translate-y-0.5">
               <p className="text-xs font-bold text-orange-500 uppercase tracking-wider">Next step</p>
               <div className="flex items-center gap-4 mt-2">
-                <div className={`w-12 h-12 rounded-xl ${nextStep.color} flex items-center justify-center text-2xl shadow-sm`}>
-                  {nextStep.icon}
-                </div>
+                <img
+                  src={stepIllustrations[nextStep.href]?.active || stepIllustrations[nextStep.href]?.default || ""}
+                  alt={nextStep.title}
+                  width={56}
+                  height={56}
+                  className="shrink-0"
+                />
                 <div className="flex-1">
                   <h3 className="font-bold text-lg text-gray-800 group-hover:text-orange-600 transition-colors">
                     {nextStep.title}
@@ -114,13 +122,9 @@ export default async function CustomerDashboard() {
 
       {/* All steps */}
       <div className="mt-6 space-y-3">
-        {steps.map((step) => (
-          <Link
-            key={step.href}
-            href={step.status === "locked" ? "#" : step.href}
-            className={`group block ${step.status === "locked" ? "opacity-50 cursor-not-allowed" : ""}`}
-            onClick={(e) => step.status === "locked" && e.preventDefault()}
-          >
+        {steps.map((step) => {
+          const illus = stepIllustrations[step.href];
+          const card = (
             <div className={`flex items-center gap-4 bg-white rounded-2xl px-5 py-4 border transition-all ${
               step.status === "active"
                 ? "border-orange-200 shadow-sm hover:shadow-md hover:-translate-y-0.5"
@@ -128,11 +132,13 @@ export default async function CustomerDashboard() {
                 ? "border-emerald-100"
                 : "border-gray-100"
             }`}>
-              <div className={`w-10 h-10 rounded-xl flex items-center justify-center text-lg ${
-                step.status === "done" ? "bg-emerald-100" : step.status === "active" ? step.color + " shadow-sm" : "bg-gray-100"
-              }`}>
-                {step.status === "done" ? "✅" : step.icon}
-              </div>
+              <img
+                src={step.status === "done" ? illus.active : illus.default}
+                alt={step.title}
+                width={48}
+                height={48}
+                className={`shrink-0 ${step.status === "locked" ? "opacity-40 grayscale" : ""}`}
+              />
               <div className="flex-1 min-w-0">
                 <h3 className={`font-semibold text-sm ${
                   step.status === "active" ? "text-gray-800" : step.status === "done" ? "text-emerald-700" : "text-gray-400"
@@ -145,9 +151,26 @@ export default async function CustomerDashboard() {
               {step.status === "locked" && (
                 <span className="text-gray-300 text-sm">🔒</span>
               )}
+              {step.status === "done" && (
+                <span className="text-emerald-500 text-sm">✅</span>
+              )}
             </div>
-          </Link>
-        ))}
+          );
+
+          if (step.status === "locked") {
+            return (
+              <div key={step.href} className="opacity-50 cursor-not-allowed">
+                {card}
+              </div>
+            );
+          }
+
+          return (
+            <Link key={step.href} href={step.href} className="group block">
+              {card}
+            </Link>
+          );
+        })}
       </div>
 
       {/* Upcoming appointment card */}

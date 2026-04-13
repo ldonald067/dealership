@@ -125,10 +125,15 @@ export default function AppointmentsPage() {
 
   return (
     <div className="p-6 md:p-10 max-w-3xl">
-      <h1 className="text-2xl font-bold text-teal-800">Book Appointment</h1>
-      <p className="text-gray-500 mt-1">
-        Schedule your test drive & signing — we&apos;ll have everything ready
-      </p>
+      <div className="flex items-center gap-4">
+        <img src="/illustrations/calendar1.png" alt="" width={64} height={48} className="shrink-0 hidden sm:block" />
+        <div>
+          <h1 className="text-2xl font-bold text-teal-800">Book Appointment</h1>
+          <p className="text-gray-500 mt-1">
+            Schedule your test drive & signing — we&apos;ll have everything ready
+          </p>
+        </div>
+      </div>
 
       {/* Existing appointments */}
       {appointments.length > 0 && (

@@ -109,7 +109,10 @@ export default function CreditPage() {
     const config = statusConfig[latest?.status] || statusConfig.SUBMITTED;
     return (
       <div className="p-6 md:p-10 max-w-2xl">
-        <h1 className="text-2xl font-bold text-teal-800">Credit Application</h1>
+        <div className="flex items-center gap-4">
+          <img src="/illustrations/bank1.png" alt="" width={64} height={48} className="shrink-0 hidden sm:block" />
+          <h1 className="text-2xl font-bold text-teal-800">Credit Application</h1>
+        </div>
 
         <div className="mt-8 bg-white rounded-2xl shadow-sm border border-gray-100 p-8 text-center">
           <div className={`inline-flex items-center justify-center w-20 h-20 rounded-2xl ${config.bg} text-4xl mb-4 shadow-sm`}>
@@ -172,10 +175,15 @@ export default function CreditPage() {
 
   return (
     <div className="p-6 md:p-10 max-w-2xl">
-      <h1 className="text-2xl font-bold text-teal-800">Credit Application</h1>
-      <p className="text-gray-500 mt-1">
-        Get pre-approved so everything is ready when you arrive
-      </p>
+      <div className="flex items-center gap-4">
+        <img src="/illustrations/bank1.png" alt="" width={64} height={48} className="shrink-0 hidden sm:block" />
+        <div>
+          <h1 className="text-2xl font-bold text-teal-800">Credit Application</h1>
+          <p className="text-gray-500 mt-1">
+            Get pre-approved so everything is ready when you arrive
+          </p>
+        </div>
+      </div>
 
       <form onSubmit={handleSubmit} className="mt-8 space-y-6">
         {/* Employment */}
