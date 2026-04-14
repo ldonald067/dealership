@@ -112,7 +112,7 @@ export default function DocumentsPage() {
   return (
     <div className="p-6 md:p-10 max-w-4xl">
       <div className="flex items-center gap-4">
-        <img src="/illustrations/folder1.png" alt="" width={64} height={48} className="shrink-0 hidden sm:block" />
+        <img src="/illustrations/folder1.png" alt="Upload documents" width={64} height={48} className="shrink-0 hidden sm:block" />
         <div>
           <h1 className="text-2xl font-bold text-teal-800">Upload Documents</h1>
           <p className="text-gray-500 mt-1">

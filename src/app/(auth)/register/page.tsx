@@ -78,7 +78,7 @@ export default function RegisterPage() {
 
       <form onSubmit={handleSubmit} className="space-y-5">
         {error && (
-          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl text-sm">
+          <div role="alert" className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl text-sm">
             {error}
           </div>
         )}
@@ -87,6 +87,7 @@ export default function RegisterPage() {
         <div className="flex gap-3">
           <button
             type="button"
+            aria-pressed={form.role === "CUSTOMER"}
             onClick={() => updateField("role", "CUSTOMER")}
             className={`flex-1 py-3 px-4 rounded-xl font-medium text-sm transition-all duration-200 ${
               form.role === "CUSTOMER"
@@ -98,6 +99,7 @@ export default function RegisterPage() {
           </button>
           <button
             type="button"
+            aria-pressed={form.role === "DEALER"}
             onClick={() => updateField("role", "DEALER")}
             className={`flex-1 py-3 px-4 rounded-xl font-medium text-sm transition-all duration-200 ${
               form.role === "DEALER"
@@ -122,7 +124,7 @@ export default function RegisterPage() {
               type="text"
               value={form.firstName}
               onChange={(e) => updateField("firstName", e.target.value)}
-              className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-orange-400 focus:ring-2 focus:ring-orange-100 outline-none transition-all"
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-orange-400 focus:ring-2 focus:ring-orange-200 outline-none transition-all"
               required
             />
           </div>
@@ -138,7 +140,7 @@ export default function RegisterPage() {
               type="text"
               value={form.lastName}
               onChange={(e) => updateField("lastName", e.target.value)}
-              className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-orange-400 focus:ring-2 focus:ring-orange-100 outline-none transition-all"
+              className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-orange-400 focus:ring-2 focus:ring-orange-200 outline-none transition-all"
               required
             />
           </div>
@@ -156,7 +158,7 @@ export default function RegisterPage() {
             type="email"
             value={form.email}
             onChange={(e) => updateField("email", e.target.value)}
-            className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-orange-400 focus:ring-2 focus:ring-orange-100 outline-none transition-all"
+            className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-orange-400 focus:ring-2 focus:ring-orange-200 outline-none transition-all"
             placeholder="you@example.com"
             required
           />
@@ -175,7 +177,7 @@ export default function RegisterPage() {
             type="tel"
             value={form.phone}
             onChange={(e) => updateField("phone", e.target.value)}
-            className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-orange-400 focus:ring-2 focus:ring-orange-100 outline-none transition-all"
+            className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-orange-400 focus:ring-2 focus:ring-orange-200 outline-none transition-all"
             placeholder="(555) 123-4567"
           />
         </div>
@@ -192,19 +194,26 @@ export default function RegisterPage() {
             type="password"
             value={form.password}
             onChange={(e) => updateField("password", e.target.value)}
-            className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-orange-400 focus:ring-2 focus:ring-orange-100 outline-none transition-all"
+            className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-orange-400 focus:ring-2 focus:ring-orange-200 outline-none transition-all"
             placeholder="At least 8 characters"
+            aria-describedby="password-hint"
             minLength={8}
             required
           />
+          <p id="password-hint" className="text-xs text-gray-400 mt-1.5">Must be at least 8 characters</p>
         </div>
 
         <button
           type="submit"
           disabled={loading}
-          className="w-full py-3 px-4 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-xl transition-all duration-200 shadow-lg shadow-orange-500/20 hover:shadow-orange-500/30 hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full py-3 px-4 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-xl transition-all duration-200 shadow-lg shadow-orange-500/20 hover:shadow-orange-500/30 hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 flex items-center justify-center gap-2"
         >
-          {loading ? "Creating your account..." : "Get started"}
+          {loading ? (
+            <>
+              <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+              Creating your account...
+            </>
+          ) : "Get started"}
         </button>
       </form>
 

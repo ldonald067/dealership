@@ -50,7 +50,7 @@ export default function VehiclesPage() {
   return (
     <div className="p-6 md:p-10">
       <div className="flex items-center gap-4">
-        <img src="/illustrations/car1.png" alt="" width={64} height={48} className="shrink-0 hidden sm:block" />
+        <img src="/illustrations/car1.png" alt="Browse vehicles" width={64} height={48} className="shrink-0 hidden sm:block" />
         <div>
           <h1 className="text-2xl font-bold text-teal-800">Browse Vehicles</h1>
           <p className="text-gray-500 mt-1">
@@ -68,6 +68,7 @@ export default function VehiclesPage() {
           <div className="flex gap-2">
             {bodyTypes.map((type) => (
               <button
+                type="button"
                 key={type}
                 onClick={() => setBodyFilter(type)}
                 className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
@@ -88,6 +89,7 @@ export default function VehiclesPage() {
           <div className="flex gap-2">
             {fuelTypes.map((type) => (
               <button
+                type="button"
                 key={type}
                 onClick={() => setFuelFilter(type)}
                 className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
