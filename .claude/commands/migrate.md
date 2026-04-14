@@ -1,0 +1,1 @@
+Run Prisma migrations. If the user provides a name, use it: `npx prisma migrate dev --name <name>`. If no name is provided, ask for one. After migrating, regenerate the Prisma client with `npx prisma generate`. Report any errors clearly.
