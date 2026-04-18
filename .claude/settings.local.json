@@ -23,7 +23,9 @@
       "Bash(npx shadcn@latest add card input label dialog table select badge calendar tabs separator dropdown-menu avatar toast sheet -y)",
       "Bash(npx shadcn@latest add card input label dialog table select badge calendar tabs separator dropdown-menu avatar sonner sheet -y)",
       "Bash(node -e \"const p = require\\('./package.json'\\); console.log\\('sonner:', p.dependencies?.sonner, 'base-ui:', p.dependencies?.['@base-ui/react'], 'lucide:', p.dependencies?.['lucide-react']\\)\")",
-      "WebFetch(domain:pose-hut-58194366.figma.site)"
+      "WebFetch(domain:pose-hut-58194366.figma.site)",
+      "Bash(gh repo:*)",
+      "Bash(gh pr *)"
     ]
   }
 }
