@@ -125,7 +125,7 @@ export default async function CustomerDashboard() {
         {steps.map((step) => {
           const illus = stepIllustrations[step.href];
           const card = (
-            <div className={`flex items-center gap-4 bg-white rounded-2xl px-5 py-4 border transition-all ${
+            <div className={`flex items-center gap-4 bg-white rounded-2xl px-5 py-4 border transition-all duration-200 ${
               step.status === "active"
                 ? "border-orange-200 shadow-sm hover:shadow-md hover:-translate-y-0.5"
                 : step.status === "done"

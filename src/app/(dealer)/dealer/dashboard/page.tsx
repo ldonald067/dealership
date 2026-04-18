@@ -51,10 +51,10 @@ export default async function DealerDashboard() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
         {cards.map((card) => (
           <Link key={card.label} href={card.href}>
-            <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 hover:shadow-md hover:border-orange-200/50 transition-all">
+            <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 hover:shadow-md hover:border-orange-200/50 hover:-translate-y-0.5 transition-all duration-200">
               <div className="flex items-center justify-between">
                 <p className="text-sm text-gray-500 font-medium">{card.label}</p>
-                <span className="text-lg">{card.icon}</span>
+                <span className="text-lg" aria-hidden="true">{card.icon}</span>
               </div>
               <p className={`text-3xl font-bold mt-2 ${card.color}`}>{card.value}</p>
             </div>

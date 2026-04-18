@@ -110,7 +110,7 @@ export default function CreditPage() {
     return (
       <div className="p-6 md:p-10 max-w-2xl">
         <div className="flex items-center gap-4">
-          <img src="/illustrations/bank1.png" alt="" width={64} height={48} className="shrink-0 hidden sm:block" />
+          <img src="/illustrations/bank1.png" alt="Credit application" width={64} height={48} className="shrink-0 hidden sm:block" />
           <h1 className="text-2xl font-bold text-teal-800">Credit Application</h1>
         </div>
 
@@ -176,7 +176,7 @@ export default function CreditPage() {
   return (
     <div className="p-6 md:p-10 max-w-2xl">
       <div className="flex items-center gap-4">
-        <img src="/illustrations/bank1.png" alt="" width={64} height={48} className="shrink-0 hidden sm:block" />
+        <img src="/illustrations/bank1.png" alt="Credit application" width={64} height={48} className="shrink-0 hidden sm:block" />
         <div>
           <h1 className="text-2xl font-bold text-teal-800">Credit Application</h1>
           <p className="text-gray-500 mt-1">

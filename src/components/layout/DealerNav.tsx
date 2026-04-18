@@ -43,7 +43,7 @@ export function DealerNav() {
                   : "text-gray-600 hover:bg-gray-50 hover:text-gray-800"
               }`}
             >
-              <span className="text-lg">{item.icon}</span>
+              <span className="text-lg" aria-hidden="true">{item.icon}</span>
               {item.label}
             </Link>
           );
@@ -55,7 +55,7 @@ export function DealerNav() {
           onClick={() => setShowSignOut(true)}
           className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-gray-500 hover:bg-red-50 hover:text-red-600 transition-all duration-200 w-full"
         >
-          <span className="text-lg">✌️</span>
+          <span className="text-lg" aria-hidden="true">✌️</span>
           Sign out
         </button>
       </div>

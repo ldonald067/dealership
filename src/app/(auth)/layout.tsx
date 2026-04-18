@@ -6,7 +6,7 @@ export default function AuthLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen flex">
+    <div className="min-h-screen flex" id="main-content">
       {/* Left panel — branding */}
       <div className="hidden lg:flex lg:w-[45%] bg-teal-800 p-12 flex-col justify-between relative overflow-hidden">
         <div className="relative z-10">

@@ -55,6 +55,12 @@ export default function InventoryPage() {
             </div>
           ))}
         </div>
+      ) : vehicles.length === 0 ? (
+        <div className="mt-6 bg-white rounded-2xl p-12 text-center border border-dashed border-gray-200">
+          <p className="text-4xl mb-4">🏎️</p>
+          <p className="text-gray-400 font-medium">No vehicles in inventory yet</p>
+          <p className="text-gray-300 text-sm mt-1">Vehicles will appear here once they&apos;re added to your dealership</p>
+        </div>
       ) : (
         <div className="mt-6 bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
           <table className="w-full text-sm">

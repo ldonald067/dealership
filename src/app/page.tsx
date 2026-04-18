@@ -10,9 +10,9 @@ const spring = { type: "spring" as const, stiffness: 120, damping: 18 };
 
 export default function Home() {
   return (
-    <div className="min-h-screen overflow-hidden">
+    <div className="min-h-screen overflow-hidden" id="main-content">
       {/* ═══ NAVBAR ═══ */}
-      <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4 bg-white/80 backdrop-blur-lg border-b border-gray-200/50">
+      <nav aria-label="Main navigation" className="fixed top-0 left-0 right-0 z-50 px-6 py-4 bg-white/80 backdrop-blur-lg border-b border-gray-200/50">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <span className="text-xl font-black text-teal-800">
             Drive<span className="text-orange-500">Ready</span>
@@ -410,15 +410,15 @@ export default function Home() {
       </section>
 
       {/* ═══ FOOTER ═══ */}
-      <footer className="bg-teal-900 px-6 md:px-12 py-8">
+      <footer aria-label="Site footer" className="bg-teal-900 px-6 md:px-12 py-8">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div>
             <p className="font-black text-white text-lg">Drive<span className="text-orange-500">Ready</span></p>
             <p className="text-teal-400 text-sm mt-1">30-minute dealership visits. Finally.</p>
           </div>
           <div className="flex items-center gap-6 text-sm text-teal-400">
-            <span>🔒 Bank-level encryption</span>
-            <span>🙅 No credit score impact</span>
+            <span aria-label="Bank-level encryption">🔒 Bank-level encryption</span>
+            <span aria-label="No credit score impact">🙅 No credit score impact</span>
           </div>
         </div>
       </footer>
